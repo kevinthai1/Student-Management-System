@@ -15,11 +15,6 @@ public class LoginGUI extends JFrame{
     private JLabel passwordJLabel;
     private JLabel emptyLabel;
 
-    public static void main(String[] args){
-        JFrame frame = new LoginGUI("Student Management System");
-        frame.setVisible(true);
-    }
-
     public LoginGUI(String title){
         super(title);
 
@@ -32,18 +27,31 @@ public class LoginGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try{
+                    //Creates connection to sql database
                     Class.forName("com.mysql.jdbc.Driver");
                     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentdatabase", "root", "naruto");
 
+                    //Reads and stores user's username and password input
                     String sql = "SELECT * FROM students WHERE user_name=? and password=?";
                     PreparedStatement pst = con.prepareStatement(sql);
                     pst.setString(1, userNameField.getText());
                     pst.setString(2, passwordField1.getText());
                     ResultSet rs = pst.executeQuery();
+
+                    //Displays main menu based on user's is_admin
                     if (rs.next()){
-                        JFrame menu = new MainMenuGUI("Main Menu");
-                        menu.setVisible(true);
-                        setVisible(false);
+                        boolean isAdmin = rs.getBoolean("is_admin");
+
+                        if (isAdmin == false){
+                            JFrame menu = new StudentMenuGUI("Student Menu");
+                            menu.setVisible(true);
+                            setVisible(false);
+                        }
+                        else{
+                            JFrame menu = new AdminMenuGUI("Admin Menu");
+                            menu.setVisible(true);
+                            setVisible(false);
+                        }
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "Error, wrong credentials");

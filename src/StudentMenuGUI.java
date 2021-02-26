@@ -1,14 +1,15 @@
 import javax.swing.*;
+import java.sql.*;
 
-public class MainMenuGUI extends JFrame{
-    private JPanel mainMenuPanel;
+public class StudentMenuGUI extends JFrame{
+    private JPanel studentMenuPanel;
     private JLabel titleLabel;
 
-    public MainMenuGUI(String title){
+    public StudentMenuGUI(String title){
         super(title);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setContentPane(mainMenuPanel);
+        this.setContentPane(studentMenuPanel);
         this.pack();
         this.setLocationRelativeTo(null);
     }
