@@ -1,19 +1,19 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class StudentListGUI extends JFrame{
+public class AdminStudentList extends JFrame{
     private JPanel studentListPanel;
     private JTable table1;
 
-    public StudentListGUI(String title){
+    public AdminStudentList(String title){
         super(title);
-
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(studentListPanel);
         this.pack();
         this.setLocationRelativeTo(null);
+        this.setSize(new Dimension(1500, 400));
     }
 
     //Retrieve data from sql and store it in an Arraylist
@@ -32,7 +32,7 @@ public class StudentListGUI extends JFrame{
             while (rs.next())
             {
                 Student student = new Student(rs.getInt("id"), rs.getInt("balance_due"), rs.getString("user_name"), rs.getString("password"),
-                        rs.getString("email"), rs.getDate("register_date"), rs.getBoolean("is_admin"));
+                        rs.getString("email"), rs.getDate("register_date"), rs.getBoolean("is_admin"), rs.getString("address"));
                 usersList.add(student);
             }
             con.close();
@@ -46,12 +46,12 @@ public class StudentListGUI extends JFrame{
     //Creates the JTable of all users using Arraylist
     private void createUIComponents() {
         ArrayList<Student> list = userList();
-        String[] columnNames = {"ID", "Username", "Password", "Email", "Balance Due", "Admin", "Register Date"};
+        String[] columnNames = {"ID", "Username", "Password", "Email", "Balance Due", "Admin", "Register Date", "Address"};
         String[][] data = null;
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         table1 = new JTable(model);
 
-        Object[] row = new Object[7];
+        Object[] row = new Object[8];
         for(int i = 0; i < list.size(); i++){
             row[0] = list.get(i).getID();
             row[1] = list.get(i).getUserName();
@@ -60,7 +60,18 @@ public class StudentListGUI extends JFrame{
             row[4] = list.get(i).getBalance();
             row[5] = list.get(i).getIsAdmin();
             row[6] = list.get(i).getRegisterDate();
+            row[7] = list.get(i).getAddress();
             model.addRow(row);
         }
+
+        //Set column widths
+        table1.getColumnModel().getColumn(0).setPreferredWidth(50);
+        table1.getColumnModel().getColumn(1).setPreferredWidth(200);
+        table1.getColumnModel().getColumn(2).setPreferredWidth(200);
+        table1.getColumnModel().getColumn(3).setPreferredWidth(300);
+        table1.getColumnModel().getColumn(4).setPreferredWidth(200);
+        table1.getColumnModel().getColumn(5).setPreferredWidth(150);
+        table1.getColumnModel().getColumn(6).setPreferredWidth(200);
+        table1.getColumnModel().getColumn(7).setPreferredWidth(500);
     }
 }
