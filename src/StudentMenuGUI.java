@@ -51,8 +51,14 @@ public class StudentMenuGUI extends JFrame{
 
         payBalanceButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-
+            public void actionPerformed(ActionEvent event) {
+                try{
+                    JFrame menu = new StudentBalance("Student Balance", student);
+                    menu.setVisible(true);
+                }
+                catch(Exception e){
+                    JOptionPane.showMessageDialog(null,e);
+                }
             }
         });
     }

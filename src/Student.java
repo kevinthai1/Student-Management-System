@@ -20,6 +20,10 @@ public class Student {
         this.address = address;
     }
 
+    public void setBalance(int balance){
+        this.balance = balance;
+    }
+
     public int getID(){
         return id;
     }

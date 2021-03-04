@@ -39,7 +39,7 @@ public class StudentAccount extends JFrame{
                     if (passwordTextField.getText().equals(passwordTextField2.getText())){
                         //Creates connection to sql database
                         Class.forName("com.mysql.jdbc.Driver");
-                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentdatabase", "root", "naruto");
+                        Connection con = DriverManager.getConnection(SQL_Connection.getURL(), SQL_Connection.getUsername(), SQL_Connection.getPassword());
 
                         //Reads and updates student account information
                         String sql = "UPDATE students SET user_name = ?, password = ?, email = ?, address = ? WHERE id = ?";
