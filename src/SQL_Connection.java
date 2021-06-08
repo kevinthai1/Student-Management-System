@@ -18,7 +18,7 @@ public class SQL_Connection {
     }
 
     static String getPassword() {
-        password = "naruto";
+        password = "password";
         return (password);
     }
 
