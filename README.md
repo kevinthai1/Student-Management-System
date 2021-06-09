@@ -5,3 +5,10 @@
  Front End: Java Swing
  Back End: MySQL
 
+ # Screenshots:
+ 
+ ![](images/Login.PNG)
+ ![](images/Student%20Menu.PNG)
+ ![](images/Student%20Account.PNG)
+ 
+
