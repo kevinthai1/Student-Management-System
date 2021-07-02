@@ -10,5 +10,5 @@
  ![](images/Login.PNG)
  ![](images/Student%20Menu.PNG)
  ![](images/Student%20Account.PNG)
- 
-
+ ![](images/Student%20Payement.PNG)
+ ![](images/Admin.PNG)
