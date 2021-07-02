@@ -7,18 +7,17 @@ public class SQL_Connection {
     private static String url, username, password;
 
     static String getURL() {
-
         url = "jdbc:mysql://localhost:3306/studentdatabase";
         return (url);
     }
 
     static String getUsername() {
-        username = "root";
+        username = "root"; //Change to your SQL Connection Username
         return (username);
     }
 
     static String getPassword() {
-        password = "password";
+        password = "password"; //Change to your SQL Connection Password
         return (password);
     }
 
